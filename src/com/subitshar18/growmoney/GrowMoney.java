@@ -1,15 +1,16 @@
 package com.subitshar18.growmoney;
 
-import com.subitshar18.growmoney.ui.register.RegisterView;
+import com.subitshar18.growmoney.ui.register.RegisterViewImpl;
 
 public class GrowMoney {
 
 	private static GrowMoney growMoney;
+	private String appName="Grow Money";
+	private String version="0.0.3";
 
 	private GrowMoney() {
 
 	}
-
 	public static GrowMoney getInstance() {
 		if (growMoney == null) {
 			growMoney = new GrowMoney();
@@ -18,15 +19,15 @@ public class GrowMoney {
 	}
 
 	public void init() {
-		new RegisterView().checkRegisteredUser();
+		new RegisterViewImpl().init();
 	}
 
 	public String getAppName() {
-		return GrowMoney.class.getSimpleName();
+		return appName;
 	}
 
 	public String getAppVersion() {
-		return "0.0.1";
+		return version;
 	}
 
 	public static void main(String[] args) {
