@@ -1,7 +1,10 @@
 package com.subitshar18.growmoney.ui.moneymanagement;
 
+import com.subitshar18.growmoney.dto.Account;
+
 public interface MoneyManagementModel {
-	public void depositValidation(Double amount);
-	public void withdrewValidation(Double amount);
+	void depositValidation(Double amount);
+	void withdrewValidation(Double amount);
+	Double accountBalance(Account account);
 
 }

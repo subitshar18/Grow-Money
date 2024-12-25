@@ -5,10 +5,10 @@ import com.subitshar18.growmoney.ui.home.HomeViewImpl;
 import com.subitshar18.growmoney.ui.register.RegisterViewImpl;
 
 public class LoginModelImpl implements LoginModel {
-	LoginPresenter loginPresenter;
+	LoginModelPresenter loginModelPresenter;
 
 	public LoginModelImpl(LoginPresenterImpl loginPresenterImpl) {
-		this.loginPresenter=loginPresenterImpl;
+		this.loginModelPresenter=loginPresenterImpl;
 	}
 
 	public void getAuthendication(String username, String password) {
@@ -16,13 +16,13 @@ public class LoginModelImpl implements LoginModel {
 		String actualPassword=GrowMoneyRepository.repository.getInstance().getUser().getPassword();
 		if(username != null && password != null ) {
 			if(!username.equals(acutualUsername)) {
-				loginPresenter.onLoginFailed("Invalid Username....");
+				loginModelPresenter.onLoginFailed("Invalid Username....");
 			}
 			else if(!password.equals(actualPassword)) {
-				loginPresenter.onLoginFailed("Invalid password....");	
+				loginModelPresenter.onLoginFailed("Invalid password....");	
 			}
 			else {
-				loginPresenter.onSuccessfulLogin();
+				loginModelPresenter.onSuccessfulLogin();
 			}
 		}
 		else {

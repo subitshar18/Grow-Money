@@ -6,24 +6,37 @@ import com.subitshar18.growmoney.dto.User;
 import com.subitshar18.growmoney.repository.GrowMoneyRepository;
 
 public class UserManagementModelImpl implements UserManagementModel {
-	private UserManagementPresenter presenter;
-	private User user;
+	private UserManagementModelPresenter presenter;
 	
-	
-
 	public UserManagementModelImpl(UserManagementPresenterImpl userManagementPresenterImpl) {
 		this.presenter=userManagementPresenterImpl;
 	}
 
 	public void updatePhoneNumber(String phonenumber) {
-		GrowMoneyRepository.getUser().setPhoneNumber(phonenumber);	
+		changePhoneNumber(phonenumber);		
 	}
 
-	public void getUserDetails() {
-		user=GrowMoneyRepository.getUser();
-		if(user != null) {
-			System.out.println("Id:"+user.getId()+"\nName:"+user.getName()+"\nPhone Number:"+user.getPhoneNumber());
-		}	
+	private void changePhoneNumber(String phoneNumber) {
+		// TODO Auto-generated method stub
+		GrowMoneyRepository.getUser().setPhoneNumber(phoneNumber);
+		presenter.onSuccess();
+		
+	}
+	
+	public User getUser() {
+		User user=GrowMoneyRepository.getUser();
+		return user;
+	}
+
+	public User getUserDetails() {
+		User user= GrowMoneyRepository.getUser();
+		return user;
+	}
+	
+	public void checkUser(User user) {
+	if(user != null) {
+		presenter.printUserDetails(user);	
+	}
 	}
 	
 	

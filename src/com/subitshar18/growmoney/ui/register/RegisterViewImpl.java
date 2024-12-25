@@ -8,10 +8,10 @@ import com.subitshar18.growmoney.ui.login.LoginViewImpl;
 
 public class RegisterViewImpl implements RegisterView {
 
-	private RegisterPresenter registerPresenter;
+	private RegisterViewPresenter registerViewPresenter;
 
 	public RegisterViewImpl() {
-		registerPresenter = new RegisterPresenterImpl(this);
+		registerViewPresenter = new RegisterPresenterImpl(this);
 	}
 
 	public void init() {
@@ -21,7 +21,7 @@ public class RegisterViewImpl implements RegisterView {
 		System.out.println("2. If already have account- Login to Account");
 		System.out.println("Enter the choice");
 		int choice = sc.nextInt();
-		registerPresenter.checkStatus(choice);
+		registerViewPresenter.checkStatus(choice);
 
 	}
 

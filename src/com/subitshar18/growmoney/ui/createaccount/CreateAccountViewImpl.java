@@ -1,30 +1,50 @@
 package com.subitshar18.growmoney.ui.createaccount;
 
-import com.subitshar18.growmoney.repository.GrowMoneyRepository;
+import java.util.Scanner;
+
+import com.subitshar18.growmoney.dto.Account;
 
 public class CreateAccountViewImpl implements CreateAccountView {
-	CreateAccountPresenter presenter;
+	CreateAccountViewPresenter presenter;
 	public CreateAccountViewImpl() {
 		presenter=new CreateAccountPresenterImpl(this);
 	}
 	
 	public void init(){
-		if (GrowMoneyRepository.getAccount() == null) {
-		System.out.println("Your Acoount is generating please wait...");
-		presenter.setAccount();
-		System.out.println("your account created successfully");
-		}
-		else {
-			System.out.println("You already have a Account");
-			showAccountDetails();
-		}
+		accountConfirmation();
+	}
+	
+	public void showAccount() {
+		presenter.getAccount();
 	}
 
-	private void showAccountDetails() {
+	public void showAccountDetails(Account account) {
 		System.out.println("Account Details....");
-		System.out.println("Account number: "+GrowMoneyRepository.getAccount().getAccountNumber());
-		System.out.println("Balance: "+GrowMoneyRepository.getAccount().getBalance());
+		System.out.println("Account number: "+account.getAccountNumber());
+		System.out.println("Balance: "+account.getBalance());
 		
 	}
+	
+	public void accountConfirmation() {
+		Scanner sc=new Scanner(System.in);
+		String choice;
+		System.out.println("Do you want to open an account type \"yes\".");
+		choice=sc.nextLine();
+		presenter.wantCreateAccount(choice);
+	}
+
+	@Override
+	public void onSuccess() {
+		System.out.println("Account Created Successfully");
+		showAccount();
+		
+	}
+	
+	public Account currentAccount() {
+		return presenter.gettCurrentAccount();
+	}
+	
+	
+
 
 }

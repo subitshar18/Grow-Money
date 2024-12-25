@@ -7,7 +7,7 @@ import com.subitshar18.growmoney.dto.User;
 import com.subitshar18.growmoney.repository.GrowMoneyRepository;
 import com.subitshar18.growmoney.ui.login.LoginViewImpl;
 
-public class RegisterPresenterImpl implements RegisterPresenter,RegisterModel {
+public class RegisterPresenterImpl implements RegisterViewPresenter,RegisterModelPresenter {
 	RegisterView registerView;
 	RegisterModel registerModel;
 	

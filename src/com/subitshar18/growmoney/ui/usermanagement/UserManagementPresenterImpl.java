@@ -1,6 +1,8 @@
 package com.subitshar18.growmoney.ui.usermanagement;
 
-public class UserManagementPresenterImpl  implements UserManagementPresenter,UserManagementModel {
+import com.subitshar18.growmoney.dto.User;
+
+public class UserManagementPresenterImpl  implements UserManagementViewPresenter,UserManagementModelPresenter {
 	private UserManagementView view;
 	private UserManagementModel model;
 	public UserManagementPresenterImpl(UserManagementViewImpl userManagementViewImpl) {
@@ -15,9 +17,29 @@ public class UserManagementPresenterImpl  implements UserManagementPresenter,Use
 		
 	}
 	@Override
-	public void getUserDetails() {
+	public void onSuccess() {
 		// TODO Auto-generated method stub
-		model.getUserDetails();
+		view.onSuccess();
+		
 	}
+	
+	@Override
+	public User getUserDetails() {
+		// TODO Auto-generated method stub
+		return model.getUserDetails();
+	}
+	@Override
+	public void checkUser(User user) {
+		// TODO Auto-generated method stub
+		model.checkUser(user);
+		
+	}
+	@Override
+	public void printUserDetails(User user) {
+		// TODO Auto-generated method stub
+		view.printUserDetails(user);
+		
+	}
+	
 
 }

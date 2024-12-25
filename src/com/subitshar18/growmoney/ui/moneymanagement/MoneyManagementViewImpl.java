@@ -2,10 +2,12 @@ package com.subitshar18.growmoney.ui.moneymanagement;
 
 import java.util.Scanner;
 
+import com.subitshar18.growmoney.dto.Account;
 import com.subitshar18.growmoney.repository.GrowMoneyRepository;
+import com.subitshar18.growmoney.ui.createaccount.CreateAccountViewImpl;
 
 public class MoneyManagementViewImpl implements MoneyManagementView {
-	MoneyManagementPresenter presenter;
+	MoneyManagementViewPresenter presenter;
 	public MoneyManagementViewImpl() {
 		presenter=new MoneyManagementPresenterImpl(this);
 		}
@@ -17,7 +19,6 @@ public class MoneyManagementViewImpl implements MoneyManagementView {
 	}
 	public void depositeUpdate() {
 		System.out.println("Money Deposite into your Account Successfully");
-		System.out.println("Current Balance:"+presenter.getBalance());
 	}
 
 	public void withdrewMoney() {
@@ -29,7 +30,15 @@ public class MoneyManagementViewImpl implements MoneyManagementView {
 	
 	public void withdrewUpdate() {
 		System.out.println("Money Withdrew from your Account Successfully");
-		System.out.println("Current Balance:"+presenter.getBalance());
+	}
+	
+	public Double getBalance(Account account) {
+		return presenter.accountBalance(account);
+	}
+	@Override
+	public void balanceUpdate() {
+		System.out.println("Please Open Account First");
+		new CreateAccountViewImpl().accountConfirmation();
 	}
 
 

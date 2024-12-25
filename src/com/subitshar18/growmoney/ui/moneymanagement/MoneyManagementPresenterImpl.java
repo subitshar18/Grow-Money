@@ -1,8 +1,9 @@
 package com.subitshar18.growmoney.ui.moneymanagement;
 
+import com.subitshar18.growmoney.dto.Account;
 import com.subitshar18.growmoney.repository.GrowMoneyRepository;
 
-public class MoneyManagementPresenterImpl implements MoneyManagementModel,MoneyManagementPresenter {
+public class MoneyManagementPresenterImpl implements MoneyManagementModelPresenter,MoneyManagementViewPresenter {
 	private MoneyManagementModel model;
 	private MoneyManagementView view;
 	public MoneyManagementPresenterImpl(MoneyManagementViewImpl moneyManagementViewImpl) {
@@ -10,12 +11,7 @@ public class MoneyManagementPresenterImpl implements MoneyManagementModel,MoneyM
 		model=new MoneyManagementModelImpl(this);
 	}
 
-	@Override
-	public void withdrewMoney() {
-		// TODO Auto-generated method stub
-		view.withdrewMoney();
-		
-	}
+	
 	
 
 	@Override
@@ -25,18 +21,6 @@ public class MoneyManagementPresenterImpl implements MoneyManagementModel,MoneyM
 		
 	}
 
-	@Override
-	public Double getBalance() {
-		return GrowMoneyRepository.getAccount().getBalance();
-		
-	}
-
-	@Override
-	public void depositMoney() {
-		// TODO Auto-generated method stub
-		view.depositMoney();
-		
-	}
 
 	@Override
 	public void depositValidation(Double amount) {
@@ -56,6 +40,24 @@ public class MoneyManagementPresenterImpl implements MoneyManagementModel,MoneyM
 	public void withdrewUpdate() {
 		// TODO Auto-generated method stub
 		view.withdrewUpdate();
+		
+	}
+
+
+
+
+	@Override
+	public Double accountBalance(Account account) {
+		return model.accountBalance(account);
+		
+	}
+
+
+
+
+	@Override
+	public void balanceUpdate() {
+		view.balanceUpdate();
 		
 	}
 

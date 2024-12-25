@@ -2,17 +2,16 @@ package com.subitshar18.growmoney.ui.home;
 
 import java.util.Scanner;
 
-
-import com.subitshar18.growmoney.repository.GrowMoneyRepository;
+import com.subitshar18.growmoney.dto.Account;
 import com.subitshar18.growmoney.ui.createaccount.CreateAccountViewImpl;
 import com.subitshar18.growmoney.ui.login.LoginViewImpl;
 import com.subitshar18.growmoney.ui.moneymanagement.MoneyManagementViewImpl;
 import com.subitshar18.growmoney.ui.usermanagement.UserManagementViewImpl;
 
 public class HomeViewImpl implements HomeView {
-	HomePresenter homePresenter;
+	HomeModelPresenter homeModelPresenter;
 	public HomeViewImpl() {
-		homePresenter=new HomePresenterImpl(this);
+		homeModelPresenter=new HomePresenterImpl(this);
 	}
 	
 	public void init() {
@@ -24,11 +23,11 @@ public class HomeViewImpl implements HomeView {
             int choice = Integer.parseInt(input);
 			switch(choice) {
 			case 1: new CreateAccountViewImpl().init();break;
-			case 2: new CreateAccountViewImpl().init();break;
+			case 2: new CreateAccountViewImpl().showAccount();break;
 			case 3: new MoneyManagementViewImpl().depositMoney();break;
 			case 4: new MoneyManagementViewImpl().withdrewMoney();break;
 			case 5: new UserManagementViewImpl().init();break;
-			case 6:System.out.println("Account Balance : "+GrowMoneyRepository.getAccount().getBalance());break;
+			case 6:System.out.println("Account Balance : "+ getBalance());break;
 			case 7:new LoginViewImpl().init(); return;
 			case 0:System.out.println("Thanking you for using Our Application..");return;
 			default: System.out.println("Enter the vaild Choice."); break;
@@ -39,5 +38,11 @@ public class HomeViewImpl implements HomeView {
 			}
 			
 		}
+		
+	}
+	
+	private Double getBalance() {
+		Account account=new CreateAccountViewImpl().currentAccount();
+		return new MoneyManagementViewImpl().getBalance(account);
 	}
 }

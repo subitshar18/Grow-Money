@@ -4,7 +4,7 @@ import com.subitshar18.growmoney.repository.GrowMoneyRepository;
 import com.subitshar18.growmoney.ui.home.HomeViewImpl;
 import com.subitshar18.growmoney.ui.register.RegisterViewImpl;
 
-public class LoginPresenterImpl implements LoginModel,LoginPresenter {
+public class LoginPresenterImpl implements LoginViewPresenter,LoginModelPresenter {
 	
 	private LoginView loginView;
 	private LoginModel loginModel;

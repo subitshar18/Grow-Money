@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class HomeModelImpl implements HomeModel {
 
-	private HomePresenter homePresenter;
+	private HomeModelPresenter homeModelPresenter;
 	
 	public HomeModelImpl(HomePresenterImpl homePresenterImpl) {
-		this.homePresenter=homePresenterImpl;
+		this.homeModelPresenter=homePresenterImpl;
 	}
 
 }

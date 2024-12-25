@@ -11,10 +11,10 @@ import com.subitshar18.growmoney.ui.register.RegisterViewImpl;
 
 public class LoginViewImpl implements LoginView{
 
-	private LoginPresenter loginPresenter;
+	private LoginViewPresenter loginViewPresenter;
 
 	public LoginViewImpl() {
-		loginPresenter = new LoginPresenterImpl(this);
+		loginViewPresenter = new LoginPresenterImpl(this);
 		
 	}
 
@@ -27,7 +27,7 @@ public class LoginViewImpl implements LoginView{
 			System.out.println("Enter the Password:");
 			String password = scanner.nextLine();
 			System.out.println("Please wait...");
-			loginPresenter.getAuthendication(username, password);
+			loginViewPresenter.getAuthendication(username, password);
 		} else {
 			System.out.println("Please Register first.");
 			new RegisterViewImpl().createAccount();

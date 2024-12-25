@@ -6,19 +6,21 @@ import com.subitshar18.growmoney.dto.Account;
 import com.subitshar18.growmoney.repository.GrowMoneyRepository;
 
 public class CreateAccountModelImpl implements CreateAccountModel {
-	private CreateAccountPresenter presenter;
+	private CreateAccountModelPresenter presenter;
 
 	public CreateAccountModelImpl(CreateAccountPresenterImpl createAccountPresenterImpl) {
 		this.presenter=createAccountPresenterImpl;
 	}
 
-	public void setAccount() {
-		
-			String accountNumber = generateRandomAccountNumber(13);
+	private void setAccount() {
+			int start=1000;
+			String accountNumber = "23200000"+String.valueOf(start);
+			start++;
 			String ifsc = "GM010172325";
 			Double balance = 0.0;
 			Account account = new Account(accountNumber, ifsc, balance);
 			GrowMoneyRepository.setAccount(account);
+			presenter.onSuccess();
 
 	}
 
@@ -31,6 +33,41 @@ public class CreateAccountModelImpl implements CreateAccountModel {
 		}
 
 		return accountNumber.toString();
+	}
+	
+//	public void showAccountDetails() {
+//	System.out.println("Account Details....");
+//	System.out.println("Account number: "+GrowMoneyRepository.getAccount().getAccountNumber());
+//	System.out.println("Balance: "+GrowMoneyRepository.getAccount().getBalance());
+//	
+//}
+	
+	public void getAccount() {
+		Account account=GrowMoneyRepository.getAccount();
+		checkAccount(account);
+	}
+	
+	public Account getCurrentAccount() {
+		return GrowMoneyRepository.getAccount();
+	}
+
+	private void checkAccount(Account account) {
+		if(account != null) {
+			presenter.showAccountDetails(account);
+		}
+		else {
+			presenter.accountConfirmation();
+		}
+	
+}
+
+	@Override
+	public void wantCreateAccount(String choice) {
+		// TODO Auto-generated method stub
+		if(choice.equalsIgnoreCase("yes")) {
+			setAccount();
+		}
+		
 	}
 
 
